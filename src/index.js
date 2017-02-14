@@ -19,11 +19,14 @@ class App extends Component {
         let alltime = new Request('https://fcctop100.herokuapp.com/api/fccusers/top/alltime');
         let request = alltime;
 
-        document.querySelector('#alltime').classList.remove('is-active');
-        document.querySelector('#recent').classList.remove('is-active');
-        event.selectedBoard.target.classList.add('is-active'); // Removes is-active class from both and re-sets to current
+        if (event) {
+            document.querySelector('.triangle-recent').classList.remove('is-active');
+            document.querySelector('.triangle-alltime').classList.remove('is-active');
+            event.selectedBoard.target.children[0].classList.toggle('is-active');
+            // Removes is-active class from both and re-sets to current
+        }
 
-        if (!event || event.selectedBoard.target.id === 'recent') {
+        if (!event || event.selectedBoard.target.id === 'recent-header') {
             request = recent;
         }
 

@@ -84,7 +84,7 @@ img {
   text-align: center;
 }
 
-.triangle {
+.triangle-recent {
   width: 0;
   height: 0;
   margin-left: 10px;
@@ -96,6 +96,18 @@ img {
   display: inline-flex;
 }
 
+.triangle-alltime {
+  @extend .triangle-recent;
+}
+
 .is-active {
   border-top: 10px solid $lightgrey;
+}
+
+#recent-header {
+  cursor: pointer;
+}
+
+#alltime-header {
+  @extend #recent-header;
 }
