@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import LeaderBoard from './components/leaderboard';
-// import './index.css'; // Style import
+import './style/index.css'; // Style import
 
 class App extends Component {
      constructor(props) {
@@ -19,7 +19,11 @@ class App extends Component {
         let alltime = new Request('https://fcctop100.herokuapp.com/api/fccusers/top/alltime');
         let request = alltime;
 
-        if (!event || event.target.id === 'recent') {
+        document.querySelector('#alltime').classList.remove('is-active');
+        document.querySelector('#recent').classList.remove('is-active');
+        event.selectedBoard.target.classList.add('is-active'); // Removes is-active class from both and re-sets to current
+
+        if (!event || event.selectedBoard.target.id === 'recent') {
             request = recent;
         }
 
@@ -36,9 +40,10 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div id="alltime" onClick={event => this.getSelection(event)}>FJDISFJDLKJDS</div>
-                <div id="recent" onClick={event => this.getSelection(event)}>f1j818jd18jh18djd19</div>
-                <LeaderBoard content={this.state.current} />
+                <div className="top-page"><img src="https://s3.amazonaws.com/freecodecamp/freecodecamp_logo.svg" alt="FCC LOGO" height="50"/></div>
+                <LeaderBoard
+                    content={this.state.current}
+                    onBoardSelect={selectedBoard => this.getSelection({selectedBoard}) } />
             </div>
         );
     }
