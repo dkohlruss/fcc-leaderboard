@@ -1,0 +1,12 @@
+this.setState({ img: result.map(entry => {
+                    return entry.img;
+                    })
+                });
+                this.setState({ recent: result.map(entry => {
+                    return entry.recent;
+                    })
+                });
+                this.setState({ alltime: result.map(entry => {
+                    return entry.alltime;
+                    })
+                });
